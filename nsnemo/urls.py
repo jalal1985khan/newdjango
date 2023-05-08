@@ -23,7 +23,32 @@ from nemo import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.HomePage),
+    path('', views.loginPage),
+    path('login/', views.loginPage, name='login'),
+    path('logout/', views.logoutUser, name='logout'),
+    path('users/', views.registerPage , name="users"),
+    path('dashboard/', views.dashboard, name="dashboard"),
+    path('candidate/', views.candidate, name="candidate"),
+    path('edit-candidate/<str:pk>/', views.editcandidate, name="edit-candidate"),
+    path('search/', views.search, name="search"),
+    path('allusers/', views.users, name="allusers"),
+    path('profile/', views.profile, name="profile"),
+    path('company/', views.company, name="company"),
+    path('vessel/', views.vessel, name="vessel"),
+    path('experience/', views.experience, name="experience"),
+    path('rank/', views.rank, name="rank"),
+    path('grade/', views.grade, name="grade"),
+    path('port/', views.port, name="port"),
+    path('port-agent/', views.portagent, name="port-agent"),
+    path('hospital/', views.hospital, name="hospital"),
+    path('document/', views.document, name="document"),
+    path('vendor/', views.vendors, name="vendor"),
+    path('vsl/', views.vsl, name="vsl"),
+    path('view-candidate/', views.viewcandidate, name="view-candidate"),
+    path('office-document/', views.viewdocument, name="office-document"),
+    path('country/', views.country, name="country"),
+    path('edit-country/<str:pk>/', views.editcountry, name="edit-country"),
+    path('delete-country/<str:pk>/', views.editcountry, name="delete-country"),
     
 ]
 

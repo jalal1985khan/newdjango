@@ -58,7 +58,7 @@ ROOT_URLCONF = 'nsnemo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['staticfiles'],
+        'DIRS': ['staticfiles','templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,0 +1,104 @@
+{% include 'header.html' %}
+
+<section class="error-content">
+  <!-- Main content -->
+{{form.errors}}
+{% for message in messages%}
+<div class="alert alert-success alert-dismissible">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+<h4><i class="icon fa fa-check"></i>Message</h4>
+{{message}}
+</div>
+{% endfor%}
+</section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Add Company</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+       <label for="exampleInputEmail1">Rank Name</label>
+       {{form.rank_name}}
+     </div>
+   </div>
+   <!-- /.col --> 
+   <div class="col-md-6">
+    <div class="form-group">
+       <label for="exampleInputEmail1">Rank Order</label>
+       {{form.rank_order}}
+     </div>
+   </div>
+   <!-- /.col --> 
+   <div class="col-md-6">
+    <div class="form-group">
+       <label for="exampleInputEmail1">Category</label>
+       {{form.rank_category}}
+     </div>
+   </div>
+   <!-- /.col --> 
+
+</div>
+<button type="submit" class="btn btn-primary">Add Rank</button>
+</form>
+</div>
+</div>
+<!-- end here-->
+
+      <!-- Info boxes -->
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Lists Rank</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>Sno</th>
+              <th>Rank Name</th>
+              <th>Rank Order</th>
+              <th>Category</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+              {% for ranks in rank %}              
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ ranks.rank_name }}</td>
+              <td>{{ ranks.rank_order }}</td>
+              <td>{{ ranks.rank_category }}</td>
+              <td>
+                <a href="" class="btn btn-primary">edit</a>
+                <a href="" class="btn btn-danger">delete</a>
+              </td>
+            </tr>
+            {% endfor%}            
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+
+</div>
+
+<!-- form end here-->
+
+<!-- end body table here-->
+
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
