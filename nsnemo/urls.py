@@ -49,10 +49,14 @@ urlpatterns = [
     path('country/', views.country, name="country"),
     path('edit-country/<str:pk>/', views.editcountry, name="edit-country"),
     path('delete-country/<str:pk>/', views.editcountry, name="delete-country"),
+    path('company-import/', views.importcompany, name="company-import"),
+    path('company-export/', views.exportcompay, name="company-export"),
+    
     
 ]
 
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_URL)
+    #urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    

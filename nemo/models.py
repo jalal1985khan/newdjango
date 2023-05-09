@@ -62,10 +62,10 @@ class Candidate(models.Model):
 
 class Company(models.Model):
     CATEGORY =(
-        ("Owners" ,"Owners"),
+        ("Owner" ,"Owner"),
         ("Managers" ,"Managers")
     )
-    company_name= models.CharField(max_length=200, null=True)
+    company_name= models.CharField(max_length=200, null=True, unique=True)
     contact_person= models.CharField(max_length=200, null=True)
     address= models.CharField(max_length=200, null=True)
     phone= models.CharField(max_length=200, null=True)
@@ -199,7 +199,9 @@ class CountryName(models.Model):
     country_name = models.CharField( max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True , null=True)
 
-  
+# files handling modles
+class ExcelFiles(models.Model):
+    file = models.FileField(upload_to='import_files')  
    
     
     

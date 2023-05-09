@@ -1,15 +1,20 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User,Group
 from django.contrib import messages
-from nemo.forms import CreateUserForm , CreateCandidateForm ,CreateCompanyForm, CreateVesselForm, CreateExperienceForm, CreateRankForm, CreateGradeForm, CreatePortForm, CreatePortAgentForm, CreateHospitalForm ,CreateDocumentForm, CreateVendorForm, CreateVslForm ,CreateProfileForm, CreateOfficeForm, CreateCountryForm
+from nemo.forms import *
 from django.contrib.auth.decorators import login_required
 from nemo.decorators import unauthenticated_user,admin_only
-from nemo.models import Candidate ,Company ,Vessel,Experience,Rank,Grade, Port, PortAgent ,Hospital, DocumentType, Vendors, VslType ,Profile, OfficeDocument ,CountryName
-from nemo.filters import CandidateFilter
+from nemo.models import *
+from nemo.filters import *
+import pandas as pd
+from django.conf import settings
+#from nemo.resources import *
+from django.core.files.storage import FileSystemStorage
+import csv
 
 
 #users start here
@@ -360,7 +365,47 @@ def editcountry(request ,pk):
     country = CountryName.objects.all()
     context ={'form':form,'country':country }
     return render(request,"add-country.html",context)
-#Edit candidate end here                     
+#Edit candidate end here  
+# 
+# import using django import   
+def importcompany(request):
+    if request.method == 'POST':
+            #company = CompanyResource()
+            file = request.FILES['files']
+            ExcelFiles.objects.create(
+                  file = file
+            )
+            path = file.file 
+            empexceldata = pd.read_excel(path)
+            dbframe = empexceldata
+            print(path)
+            for dbframe in dbframe.itertuples():
+                  obj = Company.objects.create(   
+                        company_name = dbframe.company_name,
+                        contact_person = dbframe.contact_person,
+                        address = dbframe.address,
+                        phone = dbframe.phone,
+                        email = dbframe.email,
+                        management = dbframe.management
+                        )           
+            obj.save()
+            messages.success(request,"Company Data uploaded")      
+
+    return redirect ("/company/")
+
+def exportcompay(request):
+      response = HttpResponse(content_type='text/csv')
+      response['Content-Disposition'] = 'attachment; filename="CompanyData.csv"'
+      writer = csv.writer(response)
+      writer.writerow(['Company Name'])  
+      writer.writerow(['company_name','contact_person','address','Phone','Email','Management'])     
+      users = Company.objects.all().values_list('company_name','contact_person' , 'address' , 'phone','email','management')
+
+      for user in users:
+            writer.writerow(user)
+      return response
+      
+                   
 
 
 
