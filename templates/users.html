@@ -1,16 +1,5 @@
 {% include "header.html" %}
-
-<section class="error-content">
-    <!-- Main content -->
-{{form.errors}}
-  {% for message in messages%}
-<div class="alert alert-success alert-dismissible">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-  <h4><i class="icon fa fa-check"></i>Message</h4>
-  {{message}}
-</div>
-  {% endfor%}
-</section>
+{% load widget_tweaks %}
     <section class="content">
 <!--add user from start here-->
      <!-- Info boxes -->
@@ -21,35 +10,36 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <form action="" method="POST">  
+        {% comment %} {{ form.as_p }} {% endcomment %}
+  <form action="" method="POST">  
           {% csrf_token %}   
 
 <div class="row">
 <div class="col-md-6">
   <div class="form-group">
      <label for="exampleInputEmail1">Username</label>
-     {{form.username}}
+     {{form.username|add_class:"form-control" }}
    </div>
  </div>
  <!-- /.col --> 
  <div class="col-md-6">
   <div class="form-group">
      <label for="exampleInputEmail1">Email</label>
-     {{form.email}}
+     {{form.email|add_class:"form-control" }}
    </div>
  </div>
  <!-- /.col --> 
  <div class="col-md-6">
   <div class="form-group">
      <label for="exampleInputEmail1">Password</label>
-     {{form.password1}}
+     {{form.password1|add_class:"form-control" }}
    </div>
  </div>
  <!-- /.col --> 
  <div class="col-md-6">
   <div class="form-group">
      <label for="exampleInputEmail1">Confirm Password</label>
-     {{form.password2}}
+     {{form.password2|add_class:"form-control" }}
    </div>
  </div>
  <div class="col-md-6">
@@ -62,6 +52,27 @@
       <select>
   </div>
 </div>
+
+
+</div>
+
+<div class="checkbox">
+  <label>
+    is active 
+    {{ form.is_active|add_class:"minimal" }} 
+  </label>
+</div>
+<div class="checkbox">
+  <label>
+    is Staff
+    {{ form.is_staff|add_class:"minimal" }} 
+  </label>
+</div>
+<div class="checkbox">
+  <label>
+    is Superadmin
+    {{ form.is_superuser|add_class:"minimal" }} 
+  </label>
 
 </div>
 

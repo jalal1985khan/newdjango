@@ -36,6 +36,7 @@
 <!-- DataTables -->
 <script src="/staticfiles/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="/staticfiles/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/staticfiles/plugins/iCheck/icheck.min.js"></script>
 <script>
     $(function () {
       $('#example1').DataTable()
@@ -47,6 +48,12 @@
         'info'        : true,
         'autoWidth'   : false
       })
+    })
+
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
     })
   </script>
 

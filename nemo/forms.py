@@ -8,15 +8,25 @@ from django import forms
 
 class CreateUserForm(UserCreationForm):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
-            visible.field.widget.attrs['placeholder'] = visible.field.label
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     for visible in self.visible_fields():
+    #         visible.field.widget.attrs['class'] = 'form-control'
+    #         visible.field.widget.attrs['placeholder'] = visible.field.label
 
     class Meta:
         model = User
-        fields = ['username','email','password1','password2']
+        fields = ['username','email','password1','password2','is_active','is_staff','is_superuser']
+        # widgets = {
+        #     'username': forms.TextInput(attrs={'class': 'form-control'}),
+        #     'email': forms.TextInput(attrs={'class': 'form-control'}),
+        #     'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
+        #     'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
+        #     'is_active': forms.CheckboxInput(attrs={'class': 'minimal'}),
+
+        # }
+        
+        #fields = '__all__'
 
 class CreateCandidateForm(forms.ModelForm):
 
