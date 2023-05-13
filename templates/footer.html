@@ -1,13 +1,12 @@
 
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
+      
       <b>Version</b> 2.4.18
     </div>
     <strong>Copyright &copy; 2023 Nautilus Shipping India Pvt Lt.</strong> All rights
     reserved.
   </footer>
-
-  <div class="control-sidebar-bg"></div>
 
 </div>
 <!-- ./wrapper -->
@@ -37,6 +36,7 @@
 <script src="/staticfiles/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="/staticfiles/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script src="/staticfiles/plugins/iCheck/icheck.min.js"></script>
+<script src="/staticfiles/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script>
     $(function () {
       $('#example1').DataTable()
@@ -49,14 +49,63 @@
         'autoWidth'   : false
       })
     })
-
+     $('#id_availibity').datepicker({
+      autoclose: true
+    })
+    $('#id_date_birth').datepicker({
+      autoclose: true
+    })
+    $('#id_availibityto').datepicker({
+      autoclose: true
+    })
     //iCheck for checkbox and radio inputs
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
       checkboxClass: 'icheckbox_minimal-blue',
       radioClass   : 'iradio_minimal-blue'
     })
+
+  
   </script>
 
- 
+  <script type="text/javascript">
+    `use strict`;
+    function refreshTime() {
+      const timeDisplay = document.getElementById("time");
+      const dateString = new Date().toLocaleString();
+      const formattedString = dateString.replace(", ", " - ");
+      timeDisplay.textContent = formattedString;
+    }
+      setInterval(refreshTime, 1000);
+    </script>
+
+ <script>
+
+
+toast = document.querySelector(".toaster");
+(closeIcon = document.querySelector(".close")),
+(progress = document.querySelector(".progress"));
+
+timer1 = setTimeout(() => {
+  toast.classList.remove("active");
+}, 5000); //1s = 1000 milliseconds
+timer2 = setTimeout(() => {
+  progress.classList.remove("active");
+}, 5300);
+
+
+closeIcon.addEventListener("click", () => {
+  toast.classList.remove("active");
+
+  setTimeout(() => {
+    progress.classList.remove("active");
+  }, 300);
+
+  clearTimeout(timer1);
+  clearTimeout(timer2);
+
+});
+
+ </script>   
+
 </body>
 </html>

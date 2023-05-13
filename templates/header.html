@@ -15,17 +15,42 @@
 
   <link rel="stylesheet" href="/staticfiles/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/staticfiles/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/staticfiles/dist/css/AdminLTE.css">
 
   <link rel="stylesheet" href="/staticfiles/dist/css/custom.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/staticfiles/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="/staticfiles/plugins/iCheck/all.css">
+  <link rel="stylesheet" href="/staticfiles/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  
 <style>
-.pt-10{
-padding-top:24px;
-}  
+  .pt-10{
+    padding-top:24px;
+    }
+    .f-right{
+      float:right;
+      padding-right: 16px;
+    }
+    .import{
+      disply:none;
+    }
+    #time{
+      background: #008d4c;
+        border-radius: 0px;
+        padding: 5px;
+        color: white;
+    }
+    .btn-app:hover {
+      background: #d73826;
+      color: #fff;
+      border-color: #aaa;
+    }
+    .btn-active {
+      background: #d73826;
+      color: #fff;
+      border-color: #aaa;
+    }  
 </style>
 
 
@@ -78,7 +103,7 @@ padding-top:24px;
 <a href="{% url "search" %}" class="btn btn-danger">Advanced search</a></div>
 {% if request.user.is_staff %}
 <div class="col-sm-2 ad-search">
-  <a href="{% url "candidate" %}" class="btn btn-success">Add Candidate</a></div>
+  <a href="{% url "add-candidate" %}" class="btn btn-success">Add Candidate</a></div>
   {% endif%}
 </div>
 
@@ -208,17 +233,17 @@ padding-top:24px;
           </ul>
         </li>
 
-        <li class="treeview {% if request.path == '/company/' %} active menu-open {% endif %}
-        {% if request.path == '/vessel/' %} active menu-open {% endif %}
-        {% if request.path == '/experience/' %} active menu-open {% endif %}
-        {% if request.path == '/rank/' %} active menu-open {% endif %}
-        {% if request.path == '/grade/' %} active menu-open {% endif %}
-        {% if request.path == '/port/' %} active menu-open {% endif %}
-        {% if request.path == '/port-agent/' %} active menu-open {% endif %}
-        {% if request.path == '/hospital/' %} active menu-open {% endif %}
-        {% if request.path == '/document/' %} active menu-open {% endif %}
-        {% if request.path == '/vendor/' %} active menu-open {% endif %}
-        {% if request.path == '/vsl/' %} active menu-open {% endif %}
+        <li class="treeview {% if request.path == '/view-company/' %} active menu-open {% endif %}
+        {% if request.path == '/view-vessel/' %} active menu-open {% endif %}
+        {% if request.path == '/view-experience/' %} active menu-open {% endif %}
+        {% if request.path == '/view-rank/' %} active menu-open {% endif %}
+        {% if request.path == '/view-grade/' %} active menu-open {% endif %}
+        {% if request.path == '/view-port/' %} active menu-open {% endif %}
+        {% if request.path == '/view-agentport/' %} active menu-open {% endif %}
+        {% if request.path == '/view-hospital/' %} active menu-open {% endif %}
+        {% if request.path == '/view-document/' %} active menu-open {% endif %}
+        {% if request.path == '/view-vendor/' %} active menu-open {% endif %}
+        {% if request.path == '/view-vsl/' %} active menu-open {% endif %}
         ">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
@@ -228,17 +253,17 @@ padding-top:24px;
             </span>
           </a>
           <ul class="treeview-menu ">
-            <li class="{% if request.path == '/company/' %} active {% endif %}"><a href="{% url 'company' %}"><i class="fa fa-circle-o"></i> Lists Company</a></li>
-            <li class="{% if request.path == '/vessel/' %} active {% endif %}"><a href="{% url 'vessel' %}"><i class="fa fa-circle-o"></i> Lists Vessel Type</a></li>
-            <li class="{% if request.path == '/vsl/' %} active {% endif %}"><a href="{% url 'vsl' %}"><i class="fa fa-circle-o"></i> Lists VSL Name</a></li>
-            <li class="{% if request.path == '/experience/' %} active {% endif %}"><a href="{% url 'experience' %}"><i class="fa fa-circle-o"></i> Lists Experience</a></li>
-            <li class="{% if request.path == '/rank/' %} active {% endif %}"><a href="{% url 'rank' %}"><i class="fa fa-circle-o"></i> Lists Rank</a></li>
-            <li class="{% if request.path == '/grade/' %} active {% endif %}"><a href="{% url 'grade' %}"><i class="fa fa-circle-o"></i> Lists Grade</a></li>
-            <li class="{% if request.path == '/port/' %} active {% endif %}"><a href="{% url 'port' %}"><i class="fa fa-circle-o"></i> Lists Port</a></li>
-            <li class="{% if request.path == '/port-agent/' %} active {% endif %}"><a href="{% url 'port-agent' %}"><i class="fa fa-circle-o"></i> Lists Port Agent</a></li>
-            <li class="{% if request.path == '/hospital/' %} active {% endif %}"><a href="{% url 'hospital' %}"><i class="fa fa-circle-o"></i> Lists Hospital</a></li>
-            <li class="{% if request.path == '/document/' %} active {% endif %}"><a href="{% url 'document' %}"><i class="fa fa-circle-o"></i> Lists Document Type</a></li>
-            <li class="{% if request.path == '/vendor/' %} active {% endif %}"><a href="{% url 'vendor' %}"><i class="fa fa-circle-o"></i> Lists Vendors</a></li>
+            <li class="{% if request.path == '/view-company/' %} active {% endif %}"><a href="{% url 'view-company' %}"><i class="fa fa-circle-o"></i> Lists Company</a></li>
+            <li class="{% if request.path == '/view-vessel/' %} active {% endif %}"><a href="{% url 'view-vessel' %}"><i class="fa fa-circle-o"></i> Lists Vessel Type</a></li>
+            <li class="{% if request.path == '/view-vsl/' %} active {% endif %}"><a href="{% url 'view-vsl' %}"><i class="fa fa-circle-o"></i> Lists VSL Name</a></li>
+            <li class="{% if request.path == '/view-experience/' %} active {% endif %}"><a href="{% url 'view-experience' %}"><i class="fa fa-circle-o"></i> Lists Experience</a></li>
+            <li class="{% if request.path == '/view-rank/' %} active {% endif %}"><a href="{% url 'view-rank' %}"><i class="fa fa-circle-o"></i> Lists Rank</a></li>
+            <li class="{% if request.path == '/view-grade/' %} active {% endif %}"><a href="{% url 'view-grade' %}"><i class="fa fa-circle-o"></i> Lists Grade</a></li>
+            <li class="{% if request.path == '/view-port/' %} active {% endif %}"><a href="{% url 'view-port' %}"><i class="fa fa-circle-o"></i> Lists Port</a></li>
+            <li class="{% if request.path == '/view-agentport/' %} active {% endif %}"><a href="{% url 'view-agentport' %}"><i class="fa fa-circle-o"></i> Lists Port Agent</a></li>
+            <li class="{% if request.path == '/view-hospital/' %} active {% endif %}"><a href="{% url 'view-hospital' %}"><i class="fa fa-circle-o"></i> Lists Hospital</a></li>
+            <li class="{% if request.path == '/view-document/' %} active {% endif %}"><a href="{% url 'view-document' %}"><i class="fa fa-circle-o"></i> Lists Document Type</a></li>
+            <li class="{% if request.path == '/view-vendor/' %} active {% endif %}"><a href="{% url 'view-vendor' %}"><i class="fa fa-circle-o"></i> Lists Vendors</a></li>
           </ul>
         </li>
 
@@ -249,11 +274,9 @@ padding-top:24px;
           </a>
         </li>
    
-      
-       
 
         <li class="header">IMPORTANTS</li>
-        <li><a href="{% url 'country' %}"><i class="fa fa-circle-o text-red"></i> <span>Country List</span></a></li>
+        <li><a href="{% url 'view-country' %}"><i class="fa fa-circle-o text-red"></i> <span>Country List</span></a></li>
         <li><a href="{% url 'view-candidate' %}"><i class="fa fa-circle-o text-red"></i> <span>Candidate Lists</span></a></li>
         <li><a href="{% url 'office-document' %}"><i class="fa fa-circle-o text-red"></i> <span>Office Documents</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Due for Renewal</span></a></li>
@@ -283,10 +306,123 @@ padding-top:24px;
       <!-- Main content -->
     {{form.errors}}
     {% for message in messages%}
-    <div class="alert alert-success alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    <h4><i class="icon fa fa-check"></i>Message</h4>
-    {{message}}
+
+        <!-- Remove 'active' class, this is just to show in Codepen thumbnail -->
+<div class="toaster active">
+  <div class="toaster-content">
+    <i class="fa fa-solid fa-check check"></i>
+
+    <div class="message">
+      <span class="text text-1">Success</span>
+      <span class="text text-2">{{message}}</span>
     </div>
+  </div>
+  <i class="fa fa-close close"></i>
+  <div class="progress active"></div>
+</div>
+
     {% endfor%}
     </section>
+ <style>
+  .toaster {
+    position: fixed;
+    top: 120px;
+    right: 30px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px 35px 20px 25px;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform: translateX(calc(100% + 30px));
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+    z-index: 9999;
+  }
+  
+  .toaster.active {
+    transform: translateX(0%);
+  }
+  
+  .toaster .toaster-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .toaster-content .check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    min-width: 35px;
+    background-color: #05a55a;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+  }
+  
+  .toaster-content .message {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+  }
+  
+  .message .text {
+    font-size: 16px;
+    font-weight: 400;
+    color: #666666;
+  }
+  
+  .message .text.text-1 {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .toaster .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+  
+  .toaster .close:hover {
+    opacity: 1;
+  }
+  
+  .toaster .progress {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+  
+  }
+  
+  .toaster .progress:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #05a55a;
+  }
+  
+  .progress.active:before {
+    animation: progress 5s linear forwards;
+  }
+  
+  @keyframes progress {
+    100% {
+      right: 100%;
+    }
+  }
+
+  
+  .toaster.active ~ button {
+    pointer-events: none;
+  }
+  
+ </style>
+
+

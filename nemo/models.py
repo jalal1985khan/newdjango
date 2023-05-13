@@ -78,7 +78,7 @@ class Company(models.Model):
     
 
 class Vessel(models.Model):
-    vessel_name = models.CharField(max_length=200, null=True)
+    vessel_name = models.CharField(max_length=200, null=True, unique=True)
     date_created = models.DateTimeField(auto_now_add=True , null=True)
     
     def __str__(self):
@@ -197,7 +197,12 @@ class OfficeDocument(models.Model):
  
 class CountryName(models.Model):
     country_name = models.CharField( max_length=200, null=True)
+    country_code = models.CharField( max_length=200, null=True)
+    country_phone_code = models.CharField( max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True , null=True)
+
+    def __str__(self):
+        return self.country_name 
 
 # files handling modles
 class ExcelFiles(models.Model):

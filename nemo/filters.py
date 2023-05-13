@@ -17,11 +17,43 @@ class CandidateFilter(django_filters.FilterSet):
         lookup_expr='icontains',
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
+
+    availibity = django_filters.CharFilter(
+        field_name='availibity',
+        lookup_expr='icontains',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    availibityto = django_filters.CharFilter(
+        field_name='availibityto',
+        lookup_expr='icontains',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    experience = django_filters.CharFilter(
+        field_name='experience',
+        lookup_expr='icontains',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    license_country = django_filters.CharFilter(
+        field_name='license_country',
+        lookup_expr='icontains',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    vessel_type = django_filters.CharFilter(
+        field_name='vessel_type',
+        lookup_expr='icontains',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    rank = django_filters.CharFilter(
+        field_name='rank',
+        lookup_expr='icontains',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
     
        
     class Meta:
         model = Candidate
-        fields = ['id','first_name','rank', 'vessel_type','experience','license_country']
+        fields = ['id','first_name','availibity','availibityto','rank', 'vessel_type','experience','license_country']
 
 
    

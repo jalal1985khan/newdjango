@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'nemo',
     'widget_tweaks',
     
+    
 ]
 
 MIDDLEWARE = [

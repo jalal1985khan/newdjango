@@ -29,14 +29,11 @@
         <div class="col-md-2">
           <div class="form-group">
             <label>Rank</label>
-            <select class="form-control select2" style="width: 100%;">
-              <option selected="selected">Alabama</option>
-              <option>Alaska</option>
-              <option>California</option>
-              <option>Delaware</option>
-              <option>Tennessee</option>
-              <option>Texas</option>
-              <option>Washington</option>
+            <select class="form-control select2" style="width: 100%;" name="rank" id="id_rank">
+              <option selected="selected" value="">-----</option>
+              {% for r in rank %}
+                <option value="{{ r.rank_name }}" >{{ r.rank_name }}</option>
+              {% endfor %}
             </select>
           </div>
           <!-- /.form-group -->
@@ -46,14 +43,11 @@
         <div class="col-md-2">
           <div class="form-group">
             <label>Vessel</label>
-            <select class="form-control select2" style="width: 100%;">
-              <option selected="selected">Alabama</option>
-              <option>Alaska</option>
-              <option>California</option>
-              <option>Delaware</option>
-              <option>Tennessee</option>
-              <option>Texas</option>
-              <option>Washington</option>
+            <select class="form-control select2" style="width: 100%;" name="vessel_type" id="vessel_type">
+              <option selected="selected" value="">-----</option>
+              {% for v in vessel %}
+              <option value="{{ v.vessel_name }}">{{ v.vessel_name }}</option>
+            {% endfor %}
             </select>
           </div>
           <!-- /.form-group -->
@@ -63,14 +57,11 @@
         <div class="col-md-2">
           <div class="form-group">
             <label>Experience</label>
-            <select class="form-control select2" style="width: 100%;">
-              <option selected="selected">Alabama</option>
-              <option>Alaska</option>
-              <option>California</option>
-              <option>Delaware</option>
-              <option>Tennessee</option>
-              <option>Texas</option>
-              <option>Washington</option>
+            <select class="form-control select2" style="width: 100%;" name="experience" id="id_experience">
+              <option selected="selected" value="">-----</option>
+              {% for e in exp %}
+              <option value="{{ e.experience }}">{{ e.experience }}</option>
+            {% endfor %}
             </select>
           </div>
           <!-- /.form-group -->
@@ -112,7 +103,7 @@
         <div class="col-md-2">
           <div class="form-group">
              <label for="exampleInputEmail1">Available From</label>
-             <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+             {{ filter.form.availibity }}
            </div>
          </div>
          <!-- /.col -->
@@ -120,7 +111,7 @@
          <div class="col-md-2">
           <div class="form-group">
              <label for="exampleInputEmail1">Available To</label>
-             <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+             {{ filter.form.availibityto }}
            </div>
          </div>
          <!-- /.col -->
@@ -175,14 +166,13 @@
         <div class="col-md-2">
           <div class="form-group">
             <label>Zone</label>
+            
             <select class="form-control select2" style="width: 100%;">
-              <option selected="selected">Alabama</option>
-              <option>Alaska</option>
-              <option>California</option>
-              <option>Delaware</option>
-              <option>Tennessee</option>
-              <option>Texas</option>
-              <option>Washington</option>
+              <option selected="selected">-----</option>
+              <option>EAST</option>
+              <option>WEST</option>
+              <option>NORTH</option>
+              <option>SOUTH</option>
             </select>
           </div>
           <!-- /.form-group -->

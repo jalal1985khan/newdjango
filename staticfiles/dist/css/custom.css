@@ -70,22 +70,3 @@
     }
     .reg-radio{top: 28px;}
     .pr-5{padding-right: 20px;}
-
-    .error-content {
-        padding: 15px;
-        margin-right: auto;
-        margin-left: auto;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-    .errorlist{
-        background-color: red;
-        text-decoration: none;
-        color: white;
-        font-size: 20px;
-        list-style: none;
-        padding: 0px;
-        margin-left: 15px;
-        margin-right: 14px;
-        padding: 8px;
-    }
